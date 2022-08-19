@@ -9,5 +9,5 @@ export const Wrapper = styled.main`
 `;
 
 export const Content = styled.section`
-  background-color: #fff;
+  /* background-color: #fff; */
 `;
