@@ -1,24 +1,36 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Booking, BookingInterval, Property } from 'shared/types';
 
-interface BookingState {}
+interface BookingState {
+  bookings: Booking[];
+  selectedBooking: Booking | null;
+}
 
-const initialState = {} as BookingState;
+const initialState = {
+  bookings: [],
+  selectedBooking: null,
+} as BookingState;
 
 export const bookingSlice = createSlice({
   name: 'booking',
   initialState,
   reducers: {
-    testAction: (
+    createBookingRequest: (
       _,
       action: PayloadAction<{
-        [key: string]: any;
+        property: Property;
+        interval: BookingInterval;
       }>
     ) => {},
+    createBookingSuccess: (state, action: PayloadAction<Booking>) => {
+      state.bookings.push(action.payload);
+    },
   },
 });
 
-export const { testAction } = bookingSlice.actions;
+export const { createBookingRequest, createBookingSuccess } =
+  bookingSlice.actions;
 
 export default bookingSlice.reducer;

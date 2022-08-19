@@ -1,6 +1,8 @@
 import { NamedSection } from 'components/atoms';
+import { useAppDispatch } from 'hooks';
 import { useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
+import { createBookingRequest } from 'store/slices/booking';
 import { Container } from './styles';
 
 const DEFAULT_SELECTION_RANGE = {
@@ -10,6 +12,7 @@ const DEFAULT_SELECTION_RANGE = {
 };
 
 const Booking: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [dateRange, setDateRange] = useState(DEFAULT_SELECTION_RANGE);
 
   const handleSelect = ranges => {
@@ -20,7 +23,19 @@ const Booking: React.FC = () => {
 
   const actions = {
     create: () => {
-      console.log(dateRange);
+      dispatch(
+        createBookingRequest({
+          property: {
+            id: '1',
+            name: 'Property 1',
+            location: 'Lane 1',
+          },
+          interval: {
+            start: dateRange.startDate,
+            end: dateRange.endDate,
+          },
+        })
+      );
     },
   };
 

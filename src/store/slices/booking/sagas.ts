@@ -1,15 +1,9 @@
-import { testAction } from 'store/slices/booking';
-/* eslint-disable */
-
-
+import { createBookingRequest } from 'store/slices/booking';
 import { takeLatest, all } from 'redux-saga/effects';
 
-
-export function testSaga({ payload }) {
-  console.log('testing saga', payload)
+export function createBooking({ payload: { property, interval } }) {
+  // TODO: Add validations here
+  console.log('testing saga', property, interval);
 }
 
-
-export default all([
-  takeLatest(testAction as any, testSaga),
-]);
+export default all([takeLatest(createBookingRequest, createBooking)]);
