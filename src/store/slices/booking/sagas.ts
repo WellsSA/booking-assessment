@@ -1,3 +1,5 @@
+import { isIntervalOverlappingBookings } from 'util/validation';
+
 import {
   createBookingRequest,
   createBookingSuccess,
@@ -9,7 +11,6 @@ import {
 import { takeLatest, all, put, select } from 'redux-saga/effects';
 import { v4 as uuidv4 } from 'uuid';
 import { notifyError, notifySuccess } from 'services/notify';
-import { areIntervalsOverlapping } from 'date-fns';
 
 export function* createBooking({ payload: { property, interval } }) {
   try {
@@ -19,24 +20,11 @@ export function* createBooking({ payload: { property, interval } }) {
 
     const { bookings } = yield select(state => state.booking);
 
-    bookings.forEach(booking => {
-      if (
-        areIntervalsOverlapping(
-          {
-            start: new Date(interval.start),
-            end: new Date(interval.end),
-          },
-          {
-            start: new Date(booking.interval.start),
-            end: new Date(booking.interval.end),
-          }
-        )
-      ) {
-        throw new Error(
-          'Booking failed. Please note you have an overlapping Booking.'
-        );
-      }
-    });
+    if (isIntervalOverlappingBookings(interval, bookings)) {
+      throw new Error(
+        'Booking failed. Please note you have an overlapping Booking.'
+      );
+    }
 
     // Note: here we could have a backend call.
     yield put(
@@ -57,7 +45,16 @@ export function* createBooking({ payload: { property, interval } }) {
 
 export function* updateBooking({ payload: { booking } }) {
   try {
+    const { bookings } = yield select(state => state.booking);
+
+    if (isIntervalOverlappingBookings(booking.interval, bookings)) {
+      throw new Error(
+        'Booking failed. Please note you have an overlapping Booking.'
+      );
+    }
+
     // Note: here we could have a backend call.
+
     yield put(
       updateBookingSuccess({
         booking,
