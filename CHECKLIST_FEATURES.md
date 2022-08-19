@@ -2,7 +2,7 @@
 
 The proposal is to create a simple but well-structured react frontend for booking.
 
-> A booking is when a guest selects a start and end date and submits a 
+> A booking is when a guest selects a start and end date and submits a
 > reservation on a property.
 
 ## Functional requirements
@@ -32,9 +32,9 @@ The proposal is to create a simple but well-structured react frontend for bookin
 
 ## Non-Functional requirements
 
-- [ ] React App using ES6 or newer
-- [ ] Use Functional Components
-- [ ] Global state management
+- [X] React App using ES6 or newer
+- [X] Use Functional Components
+- [X] Global state management
 - [ ] Responsive Desing
 
 ## Technical proposal
