@@ -30,6 +30,36 @@ export const bookingSlice = createSlice({
     ) => {
       state.bookings.push(action.payload.booking);
     },
+    updateBookingRequest: (
+      _,
+      action: PayloadAction<{ booking: Booking }>
+    ) => {},
+    updateBookingSuccess: (
+      state,
+      action: PayloadAction<{ booking: Booking }>
+    ) => {
+      const index = state.bookings.findIndex(
+        booking => booking.id === action.payload.booking.id
+      );
+      if (index !== -1) {
+        state.bookings[index] = action.payload.booking;
+      }
+    },
+    deleteBookingRequest: (
+      _,
+      action: PayloadAction<{ booking: Booking }>
+    ) => {},
+    deleteBookingSuccess: (
+      state,
+      action: PayloadAction<{ booking: Booking }>
+    ) => {
+      const index = state.bookings.findIndex(
+        booking => booking.id === action.payload.booking.id
+      );
+      if (index !== -1) {
+        state.bookings.splice(index, 1);
+      }
+    },
     setSelectedBooking: (
       state,
       action: PayloadAction<{ booking: Booking }>
@@ -43,6 +73,10 @@ export const {
   createBookingRequest,
   createBookingSuccess,
   setSelectedBooking,
+  updateBookingRequest,
+  updateBookingSuccess,
+  deleteBookingRequest,
+  deleteBookingSuccess,
 } = bookingSlice.actions;
 
 export default bookingSlice.reducer;
