@@ -5,6 +5,7 @@ import {
   createBookingRequest,
   deleteBookingRequest,
   setSelectedBooking,
+  updateBookingRequest,
 } from 'store/slices/booking';
 import { Booking } from 'shared/types';
 import { Button } from 'components/atoms/_common';
@@ -28,8 +29,6 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
   const [dateRange, setDateRange] = useState(DEFAULT_SELECTION_RANGE);
 
   const handleSelect = ranges => {
-    console.log(ranges);
-
     setDateRange(ranges.selection);
   };
 
@@ -49,7 +48,24 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
         })
       );
     },
-    update: () => {},
+    update: () => {
+      dispatch(
+        updateBookingRequest({
+          booking: {
+            id: selectedBooking?.id,
+            property: {
+              id: '1',
+              name: 'Property 1',
+              location: 'Lane 1',
+            },
+            interval: {
+              start: dateRange.startDate,
+              end: dateRange.endDate,
+            },
+          },
+        })
+      );
+    },
     unselect: () => {
       dispatch(setSelectedBooking({ booking: null }));
     },
