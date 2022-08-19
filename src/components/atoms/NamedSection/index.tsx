@@ -9,7 +9,7 @@ interface Props {
 
 const NamedSection: React.FC<Props> = ({ name, children }) => {
   return (
-    <Container>
+    <Container className="namedSection">
       <h1>{name}</h1>
       {children}
     </Container>

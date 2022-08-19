@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 
 const GlobalStyles = createGlobalStyle`
   html, body, #root {

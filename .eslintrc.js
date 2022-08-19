@@ -38,5 +38,6 @@ module.exports = {
       'warn',
       { argsIgnorePattern: 'action|_' },
     ],
+    'jsx-a11y/label-has-associated-control': 'off',
   },
 };
