@@ -11,7 +11,7 @@ The proposal is to create a simple but well-structured react frontend for bookin
   - [X] Listing Properties. `Property: (id, name, location)`
   - [X] Implement a DatePicker component for booking intervals. `BookingInterval: (startDate, endDate)`
   - [X] Create a `Booking (id, Property, BookingInterval)`
-    - [ ] Validation: Prevent double bookings (overlapping).
+    - [X] Validation: Prevent double bookings (overlapping).
     - [X] Validation: Validate the start and end dates for a booking.
 
 - [X] List all bookings
