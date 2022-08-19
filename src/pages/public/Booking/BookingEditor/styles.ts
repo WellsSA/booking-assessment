@@ -20,25 +20,8 @@ export const Container = styled.div`
       border: 1px solid #ccc;
     }
 
-    button.btn {
-      border: none;
-      padding: 10px;
-      border-radius: 4px;
-
-      &.btn-primary {
-        color: var(--primary-text);
-        background: var(--primary-color);
-      }
-
-      &.btn-outlined {
-        color: var(--primary-text);
-        background: var(--primary-color);
-      }
-
-      &.btn-danger {
-        color: var(--primary-text);
-        background: var(--primary-color);
-      }
+    .button {
+      margin: 5px 0;
     }
   }
 `;

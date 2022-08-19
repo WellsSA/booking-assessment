@@ -3,6 +3,7 @@ import { useAppDispatch } from 'hooks';
 import { DateRangePicker } from 'react-date-range';
 import { createBookingRequest } from 'store/slices/booking';
 import { Booking } from 'shared/types';
+import { Button } from 'components/atoms/_common';
 import { Container } from './styles';
 
 const DEFAULT_SELECTION_RANGE = {
@@ -64,30 +65,21 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
           onChange={handleSelect}
         />
 
-        <button
-          type="button"
-          className="btn btn-primary"
+        <Button
+          variant="primary"
           onClick={!isEditing ? actions.create : actions.update}
         >
           {!isEditing ? 'Confirm booking' : 'Update booking'}
-        </button>
+        </Button>
 
         {isEditing && (
           <>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={actions.delete}
-            >
+            <Button variant="danger" onClick={actions.delete}>
               Delete booking
-            </button>
-            <button
-              type="button"
-              className="btn btn-outlined"
-              onClick={actions.unselect}
-            >
+            </Button>
+            <Button variant="outlined" onClick={actions.unselect}>
               Cancel editing
-            </button>
+            </Button>
           </>
         )}
       </form>
