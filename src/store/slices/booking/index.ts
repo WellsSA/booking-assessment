@@ -25,7 +25,9 @@ export const bookingSlice = createSlice({
       }>
     ) => {},
     createBookingSuccess: (state, action: PayloadAction<Booking>) => {
-      (state.bookings || []).push(action.payload);
+      const newBooking = action.payload;
+
+      state.bookings.push(newBooking);
     },
   },
 });

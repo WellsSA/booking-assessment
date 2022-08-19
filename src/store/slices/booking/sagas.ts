@@ -20,7 +20,7 @@ export function* createBooking({ payload: { property, interval } }) {
       })
     );
 
-    notifySuccess('Booking created');
+    notifySuccess('Booking created successfully!');
   } catch (error) {
     notifyError(error.message);
   }
