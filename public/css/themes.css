@@ -5,6 +5,7 @@
   --neutrals-background-active: #e8e8e8;
   --neutrals-background-active-hover: #dedede;
   --primary-color: #3D91FF;
+  --primary-color-active: #2873d5;
   --primary-text: #fff;
   --primary-background: #985cd5;
   --primary-background-weak: #cfa7f7;
@@ -12,4 +13,6 @@
   --secondary-background-weak: #b3e0fb;
   --danger-text: #fff;
   --danger-color: #ff5b5b;
+  --danger-color-active: #e43030;
+  --danger-color-weak: #ffd9d9;
 }
