@@ -24,15 +24,25 @@ export const bookingSlice = createSlice({
         interval: BookingInterval;
       }>
     ) => {},
-    createBookingSuccess: (state, action: PayloadAction<Booking>) => {
-      const newBooking = action.payload;
-
-      state.bookings.push(newBooking);
+    createBookingSuccess: (
+      state,
+      action: PayloadAction<{ booking: Booking }>
+    ) => {
+      state.bookings.push(action.payload.booking);
+    },
+    setSelectedBooking: (
+      state,
+      action: PayloadAction<{ booking: Booking }>
+    ) => {
+      state.selectedBooking = action.payload.booking;
     },
   },
 });
 
-export const { createBookingRequest, createBookingSuccess } =
-  bookingSlice.actions;
+export const {
+  createBookingRequest,
+  createBookingSuccess,
+  setSelectedBooking,
+} = bookingSlice.actions;
 
 export default bookingSlice.reducer;

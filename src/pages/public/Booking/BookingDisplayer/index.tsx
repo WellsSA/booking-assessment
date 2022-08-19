@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
 import { formatDate } from 'util/formatting';
+import { setSelectedBooking } from 'store/slices/booking';
 import { Container, Card } from './styles';
 
 const BookingDisplayer: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { bookings } = useAppSelector(state => state.booking);
   const actions = {
-    select: () => {},
-    delete: () => {},
+    select: booking => {
+      dispatch(setSelectedBooking({ booking }));
+    },
   };
 
   return (
     <Container>
       {bookings.map(booking => (
-        <Card key={booking.id}>
+        <Card key={booking.id} onClick={() => actions.select(booking)}>
           <h2>{booking.property.name}</h2>
           <p>
             {formatDate(booking.interval.start)} -{' '}

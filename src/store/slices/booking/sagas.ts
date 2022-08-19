@@ -14,9 +14,11 @@ export function* createBooking({ payload: { property, interval } }) {
 
     yield put(
       createBookingSuccess({
-        id: uuidv4(),
-        property,
-        interval,
+        booking: {
+          id: uuidv4(),
+          property,
+          interval,
+        },
       })
     );
 

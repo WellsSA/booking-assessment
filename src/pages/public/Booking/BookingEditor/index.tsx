@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { DateRangePicker } from 'react-date-range';
 import { createBookingRequest } from 'store/slices/booking';
+import { Booking } from 'shared/types';
 import { Container } from './styles';
 
 const DEFAULT_SELECTION_RANGE = {
@@ -10,8 +11,15 @@ const DEFAULT_SELECTION_RANGE = {
   key: 'selection',
 };
 
-const BookingEditor: React.FC = () => {
+interface Props {
+  selectedBooking?: Booking;
+}
+
+const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
   const dispatch = useAppDispatch();
+
+  const isEditing = !!selectedBooking;
+
   const [dateRange, setDateRange] = useState(DEFAULT_SELECTION_RANGE);
 
   const handleSelect = ranges => {
@@ -36,6 +44,9 @@ const BookingEditor: React.FC = () => {
         })
       );
     },
+    update: () => {},
+    unselect: () => {},
+    delete: () => {},
   };
 
   return (
@@ -54,17 +65,38 @@ const BookingEditor: React.FC = () => {
         />
 
         <button
-          type="submit"
-          onClick={e => {
-            e.preventDefault();
-            actions.create();
-          }}
+          type="button"
+          className="btn btn-primary"
+          onClick={!isEditing ? actions.create : actions.update}
         >
-          Confirm booking
+          {!isEditing ? 'Confirm booking' : 'Update booking'}
         </button>
+
+        {isEditing && (
+          <>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={actions.delete}
+            >
+              Delete booking
+            </button>
+            <button
+              type="button"
+              className="btn btn-outlined"
+              onClick={actions.unselect}
+            >
+              Cancel editing
+            </button>
+          </>
+        )}
       </form>
     </Container>
   );
+};
+
+BookingEditor.defaultProps = {
+  selectedBooking: null,
 };
 
 export default BookingEditor;
