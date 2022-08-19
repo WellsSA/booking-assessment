@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   gap: 10px;
   justify-content: space-around;
+  flex-wrap: wrap;
 `;
 
 interface CardProps {
@@ -17,7 +18,7 @@ export const Card = styled.div<CardProps>`
   align-items: center;
   flex-direction: column;
 
-  width: 200px;
+  width: 49%;
   height: 100px;
   border-radius: 8px;
   padding: 20px;
@@ -55,5 +56,9 @@ export const Card = styled.div<CardProps>`
   p {
     font-size: 0.8rem;
     color: var(--neutrals-text-weak);
+  }
+
+  @media (max-width: 668px) {
+    width: 100%;
   }
 `;
