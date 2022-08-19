@@ -6,6 +6,7 @@ export const Wrapper = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 
   background: linear-gradient(
     95deg,

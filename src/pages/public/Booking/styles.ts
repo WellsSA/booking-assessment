@@ -5,12 +5,12 @@ export const Container = styled.div`
   height: 100%;
   padding: 40px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: auto;
 
   .namedSection {
-    max-width: 800px;
+    width: 600px;
   }
 
   form {
