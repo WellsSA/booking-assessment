@@ -31,5 +31,13 @@ export const Container = styled.div`
       border-radius: 4px;
       border: 1px solid #ccc;
     }
+
+    button[type='submit'] {
+      color: var(--primary-text);
+      background: var(--primary-color);
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+    }
   }
 `;

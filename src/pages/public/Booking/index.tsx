@@ -18,6 +18,12 @@ const Booking: React.FC = () => {
     setDateRange(ranges.selection);
   };
 
+  const actions = {
+    create: () => {
+      console.log(dateRange);
+    },
+  };
+
   return (
     <Container>
       <NamedSection name="Create a booking here">
@@ -34,7 +40,15 @@ const Booking: React.FC = () => {
             onChange={handleSelect}
           />
 
-          <button type="submit">Confirm booking</button>
+          <button
+            type="submit"
+            onClick={e => {
+              e.preventDefault();
+              actions.create();
+            }}
+          >
+            Confirm booking
+          </button>
         </form>
       </NamedSection>
 

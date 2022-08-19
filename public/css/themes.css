@@ -1,6 +1,8 @@
 [data-theme='light'] {
   --neutrals-text: #223650;
   --neutrals-background: #fff;
+  --primary-color: #3D91FF;
+  --primary-text: #fff;
   --primary-background: #985cd5;
   --secondary-background: #68b7e4;
 }
