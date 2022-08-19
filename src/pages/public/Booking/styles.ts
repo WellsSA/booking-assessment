@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
 
   .namedSection {
     width: 600px;
@@ -38,6 +38,17 @@ export const Container = styled.div`
       border: none;
       padding: 10px;
       border-radius: 4px;
+    }
+  }
+
+  @media (max-width: 668px) {
+    .namedSection {
+      width: 100%;
+
+      #booking-interval {
+        width: 100%;
+        overflow-x: auto;
+      }
     }
   }
 `;
