@@ -7,7 +7,9 @@
   --primary-color: #3D91FF;
   --primary-text: #fff;
   --primary-background: #985cd5;
+  --primary-background-weak: #cfa7f7;
   --secondary-background: #68b7e4;
+  --secondary-background-weak: #b3e0fb;
   --danger-text: #fff;
   --danger-color: #ff5b5b;
 }

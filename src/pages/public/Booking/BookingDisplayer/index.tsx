@@ -6,7 +6,7 @@ import { Container, Card } from './styles';
 
 const BookingDisplayer: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { bookings } = useAppSelector(state => state.booking);
+  const { bookings, selectedBooking } = useAppSelector(state => state.booking);
   const actions = {
     select: booking => {
       dispatch(setSelectedBooking({ booking }));
@@ -16,7 +16,11 @@ const BookingDisplayer: React.FC = () => {
   return (
     <Container>
       {bookings.map(booking => (
-        <Card key={booking.id} onClick={() => actions.select(booking)}>
+        <Card
+          key={booking.id}
+          active={selectedBooking?.id === booking.id}
+          onClick={() => actions.select(booking)}
+        >
           <h2>{booking.property.name}</h2>
           <p>
             {formatDate(booking.interval.start)} -{' '}

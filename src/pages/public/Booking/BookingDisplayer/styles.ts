@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -6,7 +6,11 @@ export const Container = styled.div`
   justify-content: space-around;
 `;
 
-export const Card = styled.div`
+interface CardProps {
+  active: boolean;
+}
+
+export const Card = styled.div<CardProps>`
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -23,6 +27,24 @@ export const Card = styled.div`
   &:hover {
     background: var(--neutrals-background-active-hover);
   }
+
+  ${props =>
+    props.active &&
+    css`
+      background: linear-gradient(
+        65deg,
+        var(--primary-background-weak),
+        var(--secondary-background-weak)
+      );
+
+      &:hover {
+        background: linear-gradient(
+          105deg,
+          var(--primary-background-weak),
+          var(--secondary-background-weak)
+        );
+      }
+    `}
 
   h2 {
     font-size: 1.1rem;
