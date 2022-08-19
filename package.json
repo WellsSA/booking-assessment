@@ -1,12 +1,15 @@
 {
-  "name": "init",
-  "version": "0.1.0",
+  "name": "booking-assessment",
+  "author": "Wellington S. Almeida (WellsSA)",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=16.17.0",
+    "yarn": ">=1.22.10"
+  },
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
