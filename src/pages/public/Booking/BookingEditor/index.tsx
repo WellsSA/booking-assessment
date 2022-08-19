@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppDispatch } from 'hooks';
 import { DateRangePicker } from 'react-date-range';
 import {
@@ -31,6 +31,16 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
   const handleSelect = ranges => {
     setDateRange(ranges.selection);
   };
+
+  useEffect(() => {
+    if (!selectedBooking) return;
+
+    setDateRange({
+      key: 'selection',
+      startDate: new Date(selectedBooking.interval.start),
+      endDate: new Date(selectedBooking.interval.end),
+    });
+  }, [selectedBooking]);
 
   const actions = {
     create: () => {
