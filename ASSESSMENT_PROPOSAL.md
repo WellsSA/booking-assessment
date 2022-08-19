@@ -13,7 +13,7 @@ The following operations must be present:
 
 - Create a booking
 - Read a booking
-- Update a bookiang
+- Update a booking
 - Delete a booking
 
 ## Global State
