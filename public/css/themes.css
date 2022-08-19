@@ -1,6 +1,9 @@
 [data-theme='light'] {
   --neutrals-text: #223650;
+  --neutrals-text-weak: #868f9a;
   --neutrals-background: #fff;
+  --neutrals-background-active: #e8e8e8;
+  --neutrals-background-active-hover: #dedede;
   --primary-color: #3D91FF;
   --primary-text: #fff;
   --primary-background: #985cd5;
