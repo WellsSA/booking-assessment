@@ -6,8 +6,10 @@ export const Wrapper = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
 
-export const Content = styled.section`
-  /* background-color: #fff; */
+  background: linear-gradient(
+    95deg,
+    var(--primary-background),
+    var(--secondary-background)
+  );
 `;
