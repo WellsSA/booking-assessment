@@ -36,3 +36,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## More information
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Preview (Expected Result)
+
+https://user-images.githubusercontent.com/41883467/185595623-e79dbbdf-d677-49b9-a6a5-96ea87c06d1b.mov
+
+
