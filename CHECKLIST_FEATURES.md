@@ -7,35 +7,35 @@ The proposal is to create a simple but well-structured react frontend for bookin
 
 ## Functional requirements
 
-- [ ] Create a Booking
-  - [ ] Listing Properties. `Property: (id, name, location)`
-  - [ ] Implement a DatePicker component for booking intervals. `BookingInterval: (startDate, endDate)`
-  - [ ] Create a `Booking (id, Property, BookingInterval)`
+- [X] Create a Booking
+  - [X] Listing Properties. `Property: (id, name, location)`
+  - [X] Implement a DatePicker component for booking intervals. `BookingInterval: (startDate, endDate)`
+  - [X] Create a `Booking (id, Property, BookingInterval)`
     - [ ] Validation: Prevent double bookings (overlapping).
-    - [ ] Validation: Validate the start and end dates for a booking.
+    - [X] Validation: Validate the start and end dates for a booking.
 
-- [ ] List all bookings
-  - Implement a list of cards representing summarized information for `Bookings (Property: name, BookingInterval: startDate, endDate)`
+- [X] List all bookings
+  - [X] Implement a list of cards representing summarized information for `Bookings (Property: name, BookingInterval: startDate, endDate)`
 
-- [ ] Read a Booking
-  - [ ] Select a booking from the All-bookings list.
-  - [ ] Fill in the current `Property` and `BookingInterval` with the `Booking` information.
+- [X] Read a Booking
+  - [X] Select a booking from the All-bookings list.
+  - [X] Fill in the current `Property` and `BookingInterval` with the `Booking` information.
 
-- [ ] Update a booking
-  - [ ] Use the `id` for the Selected Booking when submitting the Booking data.
+- [X] Update a booking
+  - [X] Use the `id` for the Selected Booking when submitting the Booking data.
 
-- [ ] Cancel a booking update
-  - [ ] Clean the current Selected Booking
+- [X] Cancel a booking update
+  - [X] Clean the current Selected Booking
 
-- [ ] Delete a booking
-  - [ ] While in the All-bookings list, allow the user to delete a booking.
+- [X] Delete a booking
+  - [X] While in the All-bookings list, allow the user to delete a booking.
 
 ## Non-Functional requirements
 
 - [X] React App using ES6 or newer
 - [X] Use Functional Components
 - [X] Global state management
-- [ ] Responsive Desing
+- [X] Responsive Desing
 
 ## Technical proposal
 
@@ -44,6 +44,7 @@ The proposal is to create a simple but well-structured react frontend for bookin
 Implement a well-structured react with:
 - Typescript: for data structure documentation and project maintenance.
 - Prettier + ESlint + Editor Config: Providing proper linting and ensuring code patterns through the team.
+- Atomic Desing: For better organizing the component hierarchy.
 
 ### Global state management
 
