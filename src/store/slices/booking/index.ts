@@ -44,21 +44,23 @@ export const bookingSlice = createSlice({
       if (index !== -1) {
         state.bookings[index] = action.payload.booking;
       }
+      state.selectedBooking = null;
     },
     deleteBookingRequest: (
       _,
-      action: PayloadAction<{ booking: Booking }>
+      action: PayloadAction<{ bookingId: Booking['id'] }>
     ) => {},
     deleteBookingSuccess: (
       state,
-      action: PayloadAction<{ booking: Booking }>
+      action: PayloadAction<{ bookingId: Booking['id'] }>
     ) => {
       const index = state.bookings.findIndex(
-        booking => booking.id === action.payload.booking.id
+        booking => booking.id === action.payload.bookingId
       );
       if (index !== -1) {
         state.bookings.splice(index, 1);
       }
+      state.selectedBooking = null;
     },
     setSelectedBooking: (
       state,

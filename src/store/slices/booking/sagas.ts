@@ -48,12 +48,12 @@ export function* updateBooking({ payload: { booking } }) {
     notifyError(error.message);
   }
 }
-export function* deleteBooking({ payload: { booking } }) {
+export function* deleteBooking({ payload: { bookingId } }) {
   try {
     // Note: here we could have a backend call.
     yield put(
       deleteBookingSuccess({
-        booking,
+        bookingId,
       })
     );
 

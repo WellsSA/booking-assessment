@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { DateRangePicker } from 'react-date-range';
-import { createBookingRequest, setSelectedBooking } from 'store/slices/booking';
+import {
+  createBookingRequest,
+  deleteBookingRequest,
+  setSelectedBooking,
+} from 'store/slices/booking';
 import { Booking } from 'shared/types';
 import { Button } from 'components/atoms/_common';
 import { Container } from './styles';
@@ -49,7 +53,9 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
     unselect: () => {
       dispatch(setSelectedBooking({ booking: null }));
     },
-    delete: () => {},
+    delete: () => {
+      dispatch(deleteBookingRequest({ bookingId: selectedBooking.id }));
+    },
   };
 
   return (
