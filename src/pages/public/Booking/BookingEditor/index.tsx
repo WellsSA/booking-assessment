@@ -9,6 +9,8 @@ import {
 } from 'store/slices/booking';
 import { Booking } from 'shared/types';
 import { Button } from 'components/atoms/_common';
+import Select from 'react-select';
+import { notifyError } from 'services/notify';
 import { Container } from './styles';
 
 const DEFAULT_SELECTION_RANGE = {
@@ -21,39 +23,54 @@ interface Props {
   selectedBooking?: Booking;
 }
 
+// Note: The properties are mocked, since the important part for now is the booking itself. :)
+const PROPERTIES_LIST = [
+  {
+    id: 'green-valley',
+    name: 'Green Valley',
+    location: 'Lane 1',
+  },
+  {
+    id: 'blue-valley',
+    name: 'Blue Valley',
+    location: 'Lane 12',
+  },
+];
+
 const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
   const dispatch = useAppDispatch();
 
   const isEditing = !!selectedBooking;
 
-  const [dateRange, setDateRange] = useState(DEFAULT_SELECTION_RANGE);
+  const [selectedInterval, setSelectedInterval] = useState(
+    DEFAULT_SELECTION_RANGE
+  );
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
-  const handleSelect = ranges => {
-    setDateRange(ranges.selection);
+  const handlers = {
+    propertySelect: ({ value, label }) => {
+      setSelectedProperty({ value, label });
+    },
+    intervalPick: ({ selection }) => {
+      setSelectedInterval(selection);
+    },
   };
-
-  useEffect(() => {
-    if (!selectedBooking) return;
-
-    setDateRange({
-      key: 'selection',
-      startDate: new Date(selectedBooking.interval.start),
-      endDate: new Date(selectedBooking.interval.end),
-    });
-  }, [selectedBooking]);
 
   const actions = {
     create: () => {
+      if (!selectedProperty || !selectedInterval) {
+        notifyError('Please select a property and an interval');
+        return;
+      }
+
       dispatch(
         createBookingRequest({
-          property: {
-            id: '1',
-            name: 'Property 1',
-            location: 'Lane 1',
-          },
+          property: PROPERTIES_LIST.find(
+            property => property.id === selectedProperty.value
+          ),
           interval: {
-            start: dateRange.startDate,
-            end: dateRange.endDate,
+            start: selectedInterval.startDate,
+            end: selectedInterval.endDate,
           },
         })
       );
@@ -63,14 +80,12 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
         updateBookingRequest({
           booking: {
             id: selectedBooking?.id,
-            property: {
-              id: '1',
-              name: 'Property 1',
-              location: 'Lane 1',
-            },
+            property: PROPERTIES_LIST.find(
+              property => property.id === selectedProperty.value
+            ),
             interval: {
-              start: dateRange.startDate,
-              end: dateRange.endDate,
+              start: selectedInterval.startDate,
+              end: selectedInterval.endDate,
             },
           },
         })
@@ -84,19 +99,41 @@ const BookingEditor: React.FC<Props> = ({ selectedBooking }: Props) => {
     },
   };
 
+  useEffect(() => {
+    if (!selectedBooking) return;
+
+    setSelectedInterval({
+      key: 'selection',
+      startDate: new Date(selectedBooking.interval.start),
+      endDate: new Date(selectedBooking.interval.end),
+    });
+
+    setSelectedProperty({
+      value: selectedBooking.property.id,
+      label: selectedBooking.property.name,
+    });
+  }, [selectedBooking]);
+
   return (
     <Container>
       <form>
         <label htmlFor="property">Select a property to book:</label>
-        <input type="text" name="property" id="property" />
+        <Select
+          options={PROPERTIES_LIST.map(({ id, name }) => ({
+            value: id,
+            label: name,
+          }))}
+          value={selectedProperty}
+          onChange={handlers.propertySelect}
+        />
         <label htmlFor="booking-interval">
           Find an interval for your booking:
         </label>
         <DateRangePicker
           id="booking-interval"
           name="booking-interval"
-          ranges={[dateRange]}
-          onChange={handleSelect}
+          ranges={[selectedInterval]}
+          onChange={handlers.intervalPick}
         />
 
         <Button
